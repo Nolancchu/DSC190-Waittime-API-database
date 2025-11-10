@@ -2,7 +2,8 @@ import os
 import requests
 import pandas as pd
 from datetime import datetime
-import psycopg2
+
+from sqlalchemy import create_engine
 
 targets = {
     16: 'Disneyland', 
@@ -54,40 +55,9 @@ def main():
         columns=['park', 'ride', 'wait_time', 'day_of_week', 'timestamp', 'time', 'month', 'year']
     )
 
-    insert_into_db(wait_time_data)
-
-
-def insert_into_db(df):
-    conn = psycopg2.connect(
-        host=os.environ["DB_HOST"],
-        dbname=os.environ["DB_NAME"],
-        user=os.environ["DB_USER"],
-        password=os.environ["DB_PASSWORD"],
-        port=os.environ.get("DB_PORT", "5432"),
-    )
-    cur = conn.cursor()
-
-    for _, row in df.iterrows():
-        cur.execute(
-            """
-            INSERT INTO wait_times (park, ride, wait_time, day_of_week, timestamp, time, month, year)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-            """,
-            (
-                row["park"],
-                row["ride"],
-                row["wait_time"],
-                row["day_of_week"],
-                row["timestamp"],
-                row["time"],
-                row["month"],
-                row["year"],
-            ),
-        )
-
-    conn.commit()
-    cur.close()
-    conn.close()
+    db_url = os.environ["DB_URL"]
+    engine = create_engine(db_url)
+    wait_time_data.to_sql("wait_times", engine, if_exists="append", index=False)
 
 
 if __name__ == "__main__":
