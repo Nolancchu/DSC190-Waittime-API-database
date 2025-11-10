@@ -56,7 +56,7 @@ def main():
     )
 
     db_url = os.environ["DB_URL"]
-    engine = create_engine(db_url)
+    engine = create_engine(db_url, connect_args={"sslmode": "require"})
     wait_time_data.to_sql("wait_times", engine, if_exists="append", index=False)
 
 
