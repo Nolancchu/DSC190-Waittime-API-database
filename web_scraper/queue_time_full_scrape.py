@@ -154,7 +154,7 @@ def save_to_csv(df, filename='wait_times.csv'):
 
 if __name__ == "__main__":
     # Define the date range to scrape
-    start_date = "2024-01-1"
+    start_date = "2015-01-1"
     end_date = "2024-12-31"  # Change this to your desired end date
     
     # Scrape wait times for multiple days
