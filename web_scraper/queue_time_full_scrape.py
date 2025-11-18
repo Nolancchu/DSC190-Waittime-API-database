@@ -89,7 +89,7 @@ def scrape_wait_times(url):
         return None
 
 
-def scrape_multiple_days(start_date, end_date, park_id=16):
+def scrape_multiple_days(start_date, end_date, park_id=17):
     """
     Scrapes wait times for multiple days and returns a combined DataFrame.
     
@@ -136,7 +136,7 @@ def scrape_multiple_days(start_date, end_date, park_id=16):
         return pd.DataFrame()
 
 
-def save_to_csv(df, filename='wait_times_2015_2025.csv'):
+def save_to_csv(df, filename='wait_times_2015_2025_DCA.csv'):
     """
     Saves DataFrame to CSV file.
     
