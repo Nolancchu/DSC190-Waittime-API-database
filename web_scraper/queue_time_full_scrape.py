@@ -136,7 +136,7 @@ def scrape_multiple_days(start_date, end_date, park_id=17):
         return pd.DataFrame()
 
 
-def save_to_csv(df, filename='wait_times_2015_2025_DCA.csv'):
+def save_to_csv(df, filename='wait_times.csv'):
     """
     Saves DataFrame to CSV file.
     
@@ -160,7 +160,7 @@ if __name__ == "__main__":
     
     # Save to CSV
     if not df.empty:
-        save_to_csv(df, 'wait_times.csv')
+        save_to_csv(df, 'wait_times_2015_2025_DCA.csv')
         print(f"\nPreview of data:")
         print(df.head(10))
     else:
