@@ -160,7 +160,7 @@ if __name__ == "__main__":
     
     # Save to CSV
     if not df.empty:
-        save_to_csv(df, 'wait_times_2015_2025_universal.csv')
+        save_to_csv(df, './wait_times_2015_2025_universal.csv')
         print(f"\nPreview of data:")
         print(df.head(10))
     else:
